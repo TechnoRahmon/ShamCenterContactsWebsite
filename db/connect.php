@@ -1,9 +1,9 @@
 <?php
     
-   $dbServername = "mysql6001.site4now.net";
-    $dbUsername = "a46d51_sccdata";
-    $dbPassword = "SLOME123karo123";
-    $dbName = "db_a46d51_sccdata";
+   $dbServername = "localhost";
+    $dbUsername = "root";
+    $dbPassword = "";
+    $dbName = "ShamCenterDb";
 
     $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
     
