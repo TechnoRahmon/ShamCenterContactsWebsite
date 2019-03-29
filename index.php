@@ -4,8 +4,16 @@
 <head>
     <title>Sham Center Contacts</title>
     <link rel="stylesheet" type="text/css" href="Style/style.css">
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/FileSaver.js"></script>
+    <script>
+        $('document').ready(function() {
+            $('#SerachBox').on('change', function() {
+                $("#FormSreach").submit();
+            });
+        });
+
+    </script>
 </head>
 
 <body>
@@ -34,14 +42,19 @@
             <option value="100">100</option>
         </select>
         <br>
-        <input type="text" name="id" id="IdBox" readonly>
+        <input type="text" name="id" id="IdBox" readonly style="display : none">
         <br>
         <button type="submit" name="submit" formaction="Methodes\InsertData.php">Add</button>
         <button type="submit" name="Update" formaction="Methodes\UpdataData.php">Update</button>
         <button type="submit" name="Delete" formaction="Methodes\DeleteData.php">Delete</button>
-        <button type="submit" name="PrintUser" onclick="Printuser()">Print User</button>
+        <button type="button" name="PrintUser" onclick="Printuser()">Print User</button>
+        <button type="button" name="PrintAll" onclick="Printall()">Print All</button>
     </form>
 
+    <form id="FormSreach" method="GET" action="index.php">
+        <input id="SerachBox" name="SerachBox" placeholder="Sreach">
+        <button><a type="button" href="index.php"></a>MAIN PAGE</button>
+    </form>
     <table id="table" border="1">
         <tr>
             <th>Money</th>
@@ -58,7 +71,45 @@
 
         <?php 
         include_once 'db\connect.php';
-    
+        
+        
+        if (isset($_GET['SerachBox'])) { 
+            $SreachString = $_GET['SerachBox'];
+            if($SreachString == null){
+            $sql = "SELECT * FROM shamcenter";
+            $result = mysqli_query($conn, $sql);
+            $Datas = array();
+            if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_assoc($result)){
+                $Datas = $row;
+                $DateValues = date('Y-m-d',strtotime($Datas["Date"]));
+                $TnSidvar = file_get_contents('Patches\TbSID.txt');
+                echo "<tr><td>" . $Datas["Money"] .  "</td><td>" . $DateValues . "</td><td>" . $Datas["Email"] . "</td><td>" . $Datas["MobNum"] . "</td><td>" . $Datas["PostNum"] . "</td><td>" . $Datas["Adress"] . "</td><td>" . $Datas["PersNum"] . "</td><td>" . $Datas["LastName"] . "</td><td>" . $Datas["FirstName"] . $TnSidvar . $Datas["ContactID"] . "</td></tr>";
+                
+            }
+        }
+            }
+            else{
+                $sreach =  mysqli_real_escape_string($conn, $SreachString);
+        $sql = "SELECT * FROM shamcenter WHERE FirstName LIKE '%$sreach%' OR LastName LIKE '%$sreach%' OR PersNum LIKE '%$sreach%' OR Adress LIKE '%$sreach%' OR PostNum LIKE '%$sreach%' OR MobNum LIKE '%$sreach%' OR Email LIKE '%$sreach%' OR Date LIKE '%$sreach%' OR Money LIKE '%$sreach%'";
+        $result = mysqli_query($conn, $sql);
+        $Datas = array();
+        if(mysqli_num_rows($result) > 0){
+            echo "There are ".mysqli_num_rows($result)." results!";
+            while($row = mysqli_fetch_assoc($result)){
+                $Datas = $row;
+                $DateValues = date('Y-m-d',strtotime($Datas["Date"]));
+                $TnSidvar = file_get_contents('Patches\TbSID.txt');
+                echo "<tr><td>" . $Datas["Money"] .  "</td><td>" . $DateValues . "</td><td>" . $Datas["Email"] . "</td><td>" . $Datas["MobNum"] . "</td><td>" . $Datas["PostNum"] . "</td><td>" . $Datas["Adress"] . "</td><td>" . $Datas["PersNum"] . "</td><td>" . $Datas["LastName"] . "</td><td>" . $Datas["FirstName"] . $TnSidvar . $Datas["ContactID"] . "</td></tr>";
+            }
+        }
+                else{
+                echo "There are No results....!!!";
+                }
+            }
+            
+        }
+        else{
         $sql = "SELECT * FROM shamcenter";
         $result = mysqli_query($conn, $sql);
         $Datas = array();
@@ -71,10 +122,28 @@
                 
             }
         }
+        }
+        
+        
     ?>
     </table>
 
     <script>
+        function Printall() {
+            var table = document.getElementById("table");
+            var DataValues = "";
+            for (var i = 1; i < table.rows.length; i++) {
+                for (var j = 8; j >= 0; j--) {
+                    DataValues += table.rows[i].cells[j].innerHTML + '\r\n';
+                }
+                DataValues += '\r\n'
+            }
+            var blob = new Blob([DataValues], {
+                type: "text/plain; charset=utf-8"
+            });
+            saveAs(blob, "All-Sham-Center-Contacts.txt");
+        }
+
         function selectedRowToInput() {
             var rIndex, table = document.getElementById("table");
             for (var i = 1; i < table.rows.length; i++) {
@@ -93,7 +162,7 @@
                 }
             }
         }
-        
+
         function EraseBoxes() {
             document.getElementById("Fname").value = " ";
             document.getElementById("Lname").value = " ";
@@ -104,19 +173,32 @@
             document.getElementById("Email").value = " ";
             document.getElementById("Date").value = " ";
             document.getElementById("Money").value = " ";
-        } 
+        }
 
         function Printuser() {
             var IdValue = document.getElementById("IdBox").value;
+            var NewLine = '\r\n';
             var Fname = document.getElementById("Fname").value;
+            var Lname = document.getElementById("Lname").value;
+            var PsNum = document.getElementById("PsNum").value;
+            var Adress = document.getElementById("Adress").value;
+            var PoNum = document.getElementById("PoNum").value;
+            var MbNum = document.getElementById("MbNum").value;
+            var Email = document.getElementById("Email").value;
+            var Date = document.getElementById("Date").value;
+            var Money = document.getElementById("Money").value;
+            var AllValues = Fname + NewLine + Lname + NewLine + PsNum + NewLine + Adress + NewLine + PoNum + NewLine + MbNum + NewLine + Email + NewLine + Date + NewLine + Money;
             if (IdValue) {
-                var blob = new Blob([Fname], {type : "text/plain; charset=utf-8"});
-                saveAs(blob, "text.txt");
+                var blob = new Blob([AllValues], {
+                    type: "text/plain; charset=utf-8"
+                });
+                saveAs(blob, Fname + "-" + Lname + "-Sham-Center-Contact.txt");
 
             } else {
                 alert("PLZ SELECT USER");
             }
         }
+
         selectedRowToInput();
 
     </script>
