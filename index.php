@@ -3,23 +3,9 @@
 
 <head>
     <title>Sham Center Contacts</title>
-    <style>
-        td:hover {
-            background-color: #f5f5f5;
-            cursor: pointer;
-        }
-
-        td.Std,
-        th.Std {
-            border: none;
-            color: transparent;
-            width: 0px;
-            position: absolute;
-        }
-
-        td.FixDateCol {}
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="Style/style.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/FileSaver.js"></script>
 </head>
 
 <body>
@@ -38,7 +24,7 @@
         <br>
         <input type="text" name="Email" id="Email" placeholder="E-mail" autocomplete="off">
         <br>
-        <input type="date" name="Date" id="Date">
+        <input type="date" name="Date" id="Date" value="<?php echo date('Y-m-d'); ?>">
         <br>
         <select type="text" name="Money" id="Money">
             <option value="0">0</option>
@@ -47,25 +33,26 @@
             <option value="100">100</option>
         </select>
         <br>
-        <input type="text" name="id" id="IdBox" readonly style="display: none">
+        <input type="text" name="id" id="IdBox" readonly>
         <br>
         <button type="submit" name="submit" formaction="Methodes\InsertData.php">Add</button>
         <button type="submit" name="Update" formaction="Methodes\UpdataData.php">Update</button>
         <button type="submit" name="Delete" formaction="Methodes\DeleteData.php">Delete</button>
+        <button type="submit" name="PrintUser" onclick="Printuser()" formaction="PrintingPress\PrintUser.php">Print User</button>
     </form>
 
     <table id="table" border="1">
         <tr>
-            <th class="Std"></th>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>PersNum</th>
-            <th>Adress</th>
-            <th>PostNum</th>
-            <th>MobNum</th>
-            <th>Email</th>
-            <th>Date</th>
             <th>Money</th>
+            <th>Date</th>
+            <th>Email</th>
+            <th>MobNum</th>
+            <th>PostNum</th>
+            <th>Adress</th>
+            <th>PersNum</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th class="Std"></th>
         </tr>
 
         <?php 
@@ -79,7 +66,7 @@
                 $Datas = $row;
                 $DateValues = date('Y-m-d',strtotime($Datas["Date"]));
                 $TnSidvar = file_get_contents('Patches\TbSID.txt');
-                echo $TnSidvar . $Datas["ContactID"] .  "</td><td>" . $Datas["FirstName"] . "</td><td>" . $Datas["LastName"] . "</td><td>" . $Datas["PersNum"] . "</td><td>" . $Datas["Adress"] . "</td><td>" . $Datas["PostNum"] . "</td><td>" . $Datas["MobNum"] . "</td><td>" . $Datas["Email"] . "</td><td>" . $DateValues . "</td><td>" . $Datas["Money"] . "</td></tr>";
+                echo "<tr><td>" . $Datas["Money"] .  "</td><td>" . $DateValues . "</td><td>" . $Datas["Email"] . "</td><td>" . $Datas["MobNum"] . "</td><td>" . $Datas["PostNum"] . "</td><td>" . $Datas["Adress"] . "</td><td>" . $Datas["PersNum"] . "</td><td>" . $Datas["LastName"] . "</td><td>" . $Datas["FirstName"] . $TnSidvar . $Datas["ContactID"] . "</td></tr>";
                 
             }
         }
@@ -92,17 +79,26 @@
             for (var i = 1; i < table.rows.length; i++) {
                 table.rows[i].onclick = function() {
                     rIndex = this.rowIndex;
-                    document.getElementById("IdBox").value = (this.cells[0].innerHTML);
-                    document.getElementById("Fname").value = (this.cells[1].innerHTML);
-                    document.getElementById("Lname").value = (this.cells[2].innerHTML);
-                    document.getElementById("PsNum").value = (this.cells[3].innerHTML);
-                    document.getElementById("Adress").value = (this.cells[4].innerHTML);
-                    document.getElementById("PoNum").value = (this.cells[5].innerHTML);
-                    document.getElementById("MbNum").value = (this.cells[6].innerHTML);
-                    document.getElementById("Email").value = (this.cells[7].innerHTML);
-                    document.getElementById("Date").value = (this.cells[8].innerHTML);
-                    document.getElementById("Money").value = (this.cells[9].innerHTML);
+                    document.getElementById("IdBox").value = (this.cells[9].innerHTML);
+                    document.getElementById("Fname").value = (this.cells[8].innerHTML);
+                    document.getElementById("Lname").value = (this.cells[7].innerHTML);
+                    document.getElementById("PsNum").value = (this.cells[6].innerHTML);
+                    document.getElementById("Adress").value = (this.cells[5].innerHTML);
+                    document.getElementById("PoNum").value = (this.cells[4].innerHTML);
+                    document.getElementById("MbNum").value = (this.cells[3].innerHTML);
+                    document.getElementById("Email").value = (this.cells[2].innerHTML);
+                    document.getElementById("Date").value = (this.cells[1].innerHTML);
+                    document.getElementById("Money").value = (this.cells[0].innerHTML);
                 }
+            }
+        }
+
+        function Printuser() {
+            var IdValue = document.getElementById("IdBox").value;
+            if (IdValue) {
+
+            } else {
+                alert("PLZ SELECT USER");
             }
         }
         selectedRowToInput();

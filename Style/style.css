@@ -1,0 +1,14 @@
+ td:hover {
+     background-color: #f5f5f5;
+     cursor: pointer;
+ }
+
+ td.Std,
+ th.Std {
+     border: none;
+     color: transparent;
+     width: 0px;
+     display: none;
+ }
+
+ td.FixDateCol {}
