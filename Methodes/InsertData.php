@@ -13,6 +13,6 @@
     
     $sql = "INSERT INTO shamcenter (FirstName, LastName, PersNum, Adress, PostNum, MobNum, Email, Date, Money) VALUES ('$FirstName', '$LastName', '$PersNum', '$Adress', '$PostNum', '$MobNum', '$Email', '$Date', '$Money');";
     $result = mysqli_query($conn, $sql);
-    
+
     header("location: ..\index.php");
 ?>

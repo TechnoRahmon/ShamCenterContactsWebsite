@@ -52,7 +52,7 @@
     </form>
 
     <form id="FormSreach" method="GET" action="index.php">
-        <input id="SerachBox" name="SerachBox" placeholder="Sreach">
+        <input id="SerachBox" name="SerachBox" placeholder="Sreach" autocomplete="off">
         <button><a type="button" href="index.php"></a>MAIN PAGE</button>
     </form>
     <table id="table" border="1">
@@ -122,9 +122,7 @@
                 
             }
         }
-        }
-        
-        
+        } 
     ?>
     </table>
 
