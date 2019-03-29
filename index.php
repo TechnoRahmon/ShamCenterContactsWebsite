@@ -11,6 +11,7 @@
 <body>
     <form method="POST">
         <input type="text" name="FirstName" id="Fname" placeholder="Förenamn" autocomplete="off">
+        <button id="Erase" onclick="EraseBoxes()">Erase</button>
         <br>
         <input type="text" name="LastName" id="Lname" placeholder="Efternamn" autocomplete="off">
         <br>
@@ -38,7 +39,7 @@
         <button type="submit" name="submit" formaction="Methodes\InsertData.php">Add</button>
         <button type="submit" name="Update" formaction="Methodes\UpdataData.php">Update</button>
         <button type="submit" name="Delete" formaction="Methodes\DeleteData.php">Delete</button>
-        <button type="submit" name="PrintUser" onclick="Printuser()" formaction="PrintingPress\PrintUser.php">Print User</button>
+        <button type="submit" name="PrintUser" onclick="Printuser()">Print User</button>
     </form>
 
     <table id="table" border="1">
@@ -92,10 +93,25 @@
                 }
             }
         }
+        
+        function EraseBoxes() {
+            document.getElementById("Fname").value = " ";
+            document.getElementById("Lname").value = " ";
+            document.getElementById("PsNum").value = " ";
+            document.getElementById("Adress").value = " ";
+            document.getElementById("PoNum").value = " ";
+            document.getElementById("MbNum").value = " ";
+            document.getElementById("Email").value = " ";
+            document.getElementById("Date").value = " ";
+            document.getElementById("Money").value = " ";
+        } 
 
         function Printuser() {
             var IdValue = document.getElementById("IdBox").value;
+            var Fname = document.getElementById("Fname").value;
             if (IdValue) {
+                var blob = new Blob([Fname], {type : "text/plain; charset=utf-8"});
+                saveAs(blob, "text.txt");
 
             } else {
                 alert("PLZ SELECT USER");
