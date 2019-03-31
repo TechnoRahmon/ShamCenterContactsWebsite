@@ -6,5 +6,5 @@
     $sql = "DELETE FROM shamcenter WHERE ContactID='$ID';";
     $result = mysqli_query($conn, $sql);
 
-    header("location: ..\index.php");
+header("location: ..\index.php");
 ?>

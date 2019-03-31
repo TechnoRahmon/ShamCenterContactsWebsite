@@ -45,8 +45,8 @@
         <input type="text" name="id" id="IdBox" readonly style="display : none">
         <br>
         <button type="submit" name="submit" formaction="Methodes\InsertData.php">Add</button>
-        <button type="submit" name="Update" formaction="Methodes\UpdataData.php">Update</button>
-        <button type="submit" name="Delete" formaction="Methodes\DeleteData.php">Delete</button>
+        <button type="submit" name="Update" onclick="CheckForUserId()" formaction="Methodes\UpdataData.php">Update</button>
+        <button type="submit" name="Delete" onclick="CheckForUserId()" formaction="Methodes\DeleteData.php">Delete</button>
         <button type="button" name="PrintUser" onclick="Printuser()">Print User</button>
         <button type="button" name="PrintAll" onclick="Printall()">Print All</button>
     </form>
@@ -194,6 +194,13 @@
 
             } else {
                 alert("PLZ SELECT USER");
+            }
+        }
+
+        function CheckForUserId() {
+            var IdValue = document.getElementById("IdBox").value;
+            if (IdValue) {} else {
+                alert("PLZ Select USER!!");
             }
         }
 
