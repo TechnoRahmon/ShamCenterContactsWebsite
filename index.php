@@ -6,14 +6,6 @@
     <link rel="stylesheet" type="text/css" href="Style/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/FileSaver.js"></script>
-    <script>
-        $('document').ready(function() {
-            $('#SerachBox').on('change', function() {
-                $("#FormSreach").submit();
-            });
-        });
-
-    </script>
 </head>
 
 <body>
@@ -51,10 +43,9 @@
         <button type="button" name="PrintAll" onclick="Printall()">Print All</button>
     </form>
 
-    <form id="FormSreach" method="GET" action="index.php">
-        <input id="SerachBox" name="SerachBox" placeholder="Sreach" autocomplete="off">
-        <button><a type="button" href="index.php"></a>MAIN PAGE</button>
-    </form>
+
+    <input type="text" id="SerachBox" onkeyup="SreachFilter()" placeholder="Sreach" autocomplete="off">
+
     <table id="table" border="1">
         <tr>
             <th>Money</th>
@@ -71,46 +62,7 @@
 
         <?php 
         include_once 'db\connect.php';
-        
-        
-        if (isset($_GET['SerachBox'])) { 
-            $SreachString = $_GET['SerachBox'];
-            if($SreachString == null){
-            $sql = "SELECT * FROM shamcenter";
-            $result = mysqli_query($conn, $sql);
-            $Datas = array();
-            if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_assoc($result)){
-                $Datas = $row;
-                $DateValues = date('Y-m-d',strtotime($Datas["Date"]));
-                $TnSidvar = file_get_contents('Patches\TbSID.txt');
-                echo "<tr><td>" . $Datas["Money"] .  "</td><td>" . $DateValues . "</td><td>" . $Datas["Email"] . "</td><td>" . $Datas["MobNum"] . "</td><td>" . $Datas["PostNum"] . "</td><td>" . $Datas["Adress"] . "</td><td>" . $Datas["PersNum"] . "</td><td>" . $Datas["LastName"] . "</td><td>" . $Datas["FirstName"] . $TnSidvar . $Datas["ContactID"] . "</td></tr>";
-                
-            }
-        }
-            }
-            else{
-                $sreach =  mysqli_real_escape_string($conn, $SreachString);
-        $sql = "SELECT * FROM shamcenter WHERE FirstName LIKE '%$sreach%' OR LastName LIKE '%$sreach%' OR PersNum LIKE '%$sreach%' OR Adress LIKE '%$sreach%' OR PostNum LIKE '%$sreach%' OR MobNum LIKE '%$sreach%' OR Email LIKE '%$sreach%' OR Date LIKE '%$sreach%' OR Money LIKE '%$sreach%'";
-        $result = mysqli_query($conn, $sql);
-        $Datas = array();
-        if(mysqli_num_rows($result) > 0){
-            echo "There are ".mysqli_num_rows($result)." results!";
-            while($row = mysqli_fetch_assoc($result)){
-                $Datas = $row;
-                $DateValues = date('Y-m-d',strtotime($Datas["Date"]));
-                $TnSidvar = file_get_contents('Patches\TbSID.txt');
-                echo "<tr><td>" . $Datas["Money"] .  "</td><td>" . $DateValues . "</td><td>" . $Datas["Email"] . "</td><td>" . $Datas["MobNum"] . "</td><td>" . $Datas["PostNum"] . "</td><td>" . $Datas["Adress"] . "</td><td>" . $Datas["PersNum"] . "</td><td>" . $Datas["LastName"] . "</td><td>" . $Datas["FirstName"] . $TnSidvar . $Datas["ContactID"] . "</td></tr>";
-            }
-        }
-                else{
-                echo "There are No results....!!!";
-                }
-            }
-            
-        }
-        else{
-        $sql = "SELECT * FROM shamcenter";
+               $sql = "SELECT * FROM shamcenter";
         $result = mysqli_query($conn, $sql);
         $Datas = array();
         if(mysqli_num_rows($result) > 0){
@@ -119,10 +71,7 @@
                 $DateValues = date('Y-m-d',strtotime($Datas["Date"]));
                 $TnSidvar = file_get_contents('Patches\TbSID.txt');
                 echo "<tr><td>" . $Datas["Money"] .  "</td><td>" . $DateValues . "</td><td>" . $Datas["Email"] . "</td><td>" . $Datas["MobNum"] . "</td><td>" . $Datas["PostNum"] . "</td><td>" . $Datas["Adress"] . "</td><td>" . $Datas["PersNum"] . "</td><td>" . $Datas["LastName"] . "</td><td>" . $Datas["FirstName"] . $TnSidvar . $Datas["ContactID"] . "</td></tr>";
-                
-            }
-        }
-        } 
+            }}
     ?>
     </table>
 
@@ -141,9 +90,10 @@
             });
             saveAs(blob, "All-Sham-Center-Contacts.txt");
         }
+        var rIndex, table = document.getElementById("table");
 
         function selectedRowToInput() {
-            var rIndex, table = document.getElementById("table");
+
             for (var i = 1; i < table.rows.length; i++) {
                 table.rows[i].onclick = function() {
                     rIndex = this.rowIndex;
@@ -160,6 +110,7 @@
                 }
             }
         }
+        selectedRowToInput();
 
         function EraseBoxes() {
             document.getElementById("Fname").value = " ";
@@ -172,6 +123,7 @@
             document.getElementById("Date").value = " ";
             document.getElementById("Money").value = " ";
         }
+
 
         function Printuser() {
             var IdValue = document.getElementById("IdBox").value;
@@ -202,6 +154,31 @@
             if (IdValue) {} else {
                 alert("PLZ Select USER!!");
             }
+        }
+
+        function SreachFilter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("SerachBox");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                // Hide the row initially.
+                tr[i].style.display = "none";
+
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                    var cell = tr[i].getElementsByTagName("td")[j];
+                    if (cell) {
+                        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+
         }
 
         selectedRowToInput();
