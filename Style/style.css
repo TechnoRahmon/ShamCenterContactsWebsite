@@ -1,14 +1,209 @@
- td:hover {
-     background-color: #f5f5f5;
-     cursor: pointer;
- }
+* {
+	margin: 0;
+	padding: 0;
+}
 
- td.Std,
- th.Std {
-     border: none;
-     color: transparent;
-     width: 0px;
-     display: none;
- }
+body {
+	background-color: #5f5f5f
+}
 
- td.FixDateCol {}
+td:hover {
+	background-color: #f5f5f5;
+	cursor: pointer;
+}
+
+td.Std,
+th.Std {
+	border: none;
+	color: transparent;
+	width: 0px;
+	display: none;
+}
+
+td.FixDateCol {}
+
+
+
+#table {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#table td,
+#table th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#table tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#table tr:nth-child(odd) {
+	background-color: white;
+}
+
+#table tr:hover {
+	background-color: #ddd;
+}
+
+#table tr:active {
+	background-color: dimgrey;
+}
+
+#table td:active {
+	background-color: dimgrey;
+}
+
+
+#table th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #ff5a5a;
+	color: white;
+}
+
+.sideA input[type=text],
+select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.sideA input[type=date],
+select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.sideA input[type=submit] {
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.sideA input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.sideA {
+
+	background-color: #f2f2f2;
+	padding: 0px 10px 10px 10px;
+
+
+
+}
+
+.sideB {
+	margin-left: 2px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 400px 1fr;
+}
+
+button {
+	background-color: white;
+	color: black;
+	border: 2px solid #555555;
+	padding: 12px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 4px 2px;
+	-webkit-transition-duration: 0.4s;
+	/* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #555555;
+	color: white;
+}
+
+#Erase {
+	float: right;
+}
+
+.fa {
+	font-size: 20px;
+	color: red;
+	margin-right: 4px;
+}
+
+#searchB input {
+	outline: none;
+}
+
+#searchB input[type="text"] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+}
+
+#searchB input::-webkit-search-decoration,
+#searchB input::-webkit-search-cancel-button {
+	display: none;
+}
+
+#searchB input[type="text"] {
+	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+	border: solid 1px #ccc;
+	padding: 9px 10px 9px 32px;
+	width: 155px;
+
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+#searchB input[type="text"]:focus {
+	width: 330px;
+	background-color: #fff;
+	border-color: #ff5a5a;
+
+	-webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+	-moz-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+	box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+}
+
+#searchB input:-moz-placeholder {
+	color: #999;
+}
+
+#searchB input::-webkit-input-placeholder {
+	color: #999;
+}
+
+#searchB {
+	margin-bottom: 3px;
+}
+
+.sideB {
+	margin-top: 3px;
+}

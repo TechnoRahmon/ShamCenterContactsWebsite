@@ -3,15 +3,23 @@
 
 <head>
     <title>Sham Center Contacts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="Style/style.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/FileSaver.js"></script>
 </head>
 
 <body>
-    <form method="POST">
+  <div class="grid">
+   <div class="sideA">
+    <form  method="POST">
+       <button id="Erase" onclick="EraseBoxes()">
+		   <i class="fa fa-close"></i>Erase</button>
         <input type="text" name="FirstName" id="Fname" placeholder="Förenamn" autocomplete="off">
-        <button id="Erase" onclick="EraseBoxes()">Erase</button>
+        
         <br>
         <input type="text" name="LastName" id="Lname" placeholder="Efternamn" autocomplete="off">
         <br>
@@ -36,15 +44,23 @@
         <br>
         <input type="text" name="id" id="IdBox" readonly style="display : none">
         <br>
-        <button type="submit" name="submit" formaction="Methodes\InsertData.php">Add</button>
-        <button type="submit" name="Update" onclick="CheckForUserId()" formaction="Methodes\UpdataData.php">Update</button>
-        <button type="submit" name="Delete" onclick="CheckForUserId()" formaction="Methodes\DeleteData.php">Delete</button>
-        <button type="button" name="PrintUser" onclick="Printuser()">Print User</button>
-        <button type="button" name="PrintAll" onclick="Printall()">Print All</button>
+        <button type="submit" name="submit" formaction="Methodes\InsertData.php">
+        <i class="fa fa-plus" aria-hidden="true"></i>Add</button>
+        <button type="submit" name="Update" onclick="CheckForUserId()" formaction="Methodes\UpdataData.php">
+        <i class="fa fa-repeat" aria-hidden="true"></i>Update</button>
+        <button type="submit" name="Delete" onclick="CheckForUserId()" formaction="Methodes\DeleteData.php"><i class="fa fa-trash"></i>Delete</button>
+        <button type="button" name="PrintUser" onclick="Printuser()">
+        <i class="fa fa-download" aria-hidden="true"></i>Print User</button>
+        <button type="button" name="PrintAll" onclick="Printall()">
+        <i class="fa fa-print" aria-hidden="true"></i>Print All</button>
     </form>
+    </div>
 
-
-    <input type="text" id="SerachBox" onkeyup="SreachFilter()" placeholder="Sreach" autocomplete="off">
+<div class="sideB">
+   <form id="searchB">
+    <input type="text" id="SerachBox" onkeyup="SreachFilter()" placeholder="Sreach" autocomplete="off"> 
+    </form>
+  
 
     <table id="table" border="1">
         <tr>
@@ -74,6 +90,9 @@
             }}
     ?>
     </table>
+    </div>
+    </div>
+    
 
     <script>
         function Printall() {
@@ -182,6 +201,7 @@
         }
 
         selectedRowToInput();
+
 
     </script>
 </body>
