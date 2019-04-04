@@ -63,7 +63,15 @@ td.FixDateCol {}
 	text-align: left;
 	background-color: #ff5a5a;
 	color: white;
+			position: -webkit-sticky;
+  position: sticky;
+  top:0;
+	
+	
 }
+
+
+
 
 .sideA input[type=text],
 select {
@@ -106,6 +114,12 @@ select {
 
 	background-color: #f2f2f2;
 	padding: 0px 10px 10px 10px;
+	max-height: 712.2px;
+	position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+	
+	
 
 
 
@@ -206,4 +220,5 @@ button:hover {
 
 .sideB {
 	margin-top: 3px;
+	
 }

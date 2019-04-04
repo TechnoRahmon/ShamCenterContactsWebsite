@@ -63,6 +63,7 @@
   
 
     <table id="table" border="1">
+      
         <tr>
             <th>Money</th>
             <th>Date</th>
@@ -75,7 +76,7 @@
             <th>FirstName</th>
             <th class="Std"></th>
         </tr>
-
+<div>
         <?php 
         include_once 'db\connect.php';
                $sql = "SELECT * FROM shamcenter";
@@ -89,7 +90,9 @@
                 echo "<tr><td>" . $Datas["Money"] .  "kr</td><td>" . $DateValues . "</td><td>" . $Datas["Email"] . "</td><td>" . $Datas["MobNum"] . "</td><td>" . $Datas["PostNum"] . "</td><td>" . $Datas["Adress"] . "</td><td>" . $Datas["PersNum"] . "</td><td>" . $Datas["LastName"] . "</td><td>" . $Datas["FirstName"] . $TnSidvar . $Datas["ContactID"] . "</td></tr>";
             }}
     ?>
+   </div>
     </table>
+     
     </div>
     </div>
     
