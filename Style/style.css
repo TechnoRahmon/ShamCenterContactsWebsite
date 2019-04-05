@@ -28,6 +28,7 @@ td.FixDateCol {}
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
 	width: 100%;
+
 }
 
 #table td,
@@ -63,12 +64,13 @@ td.FixDateCol {}
 	text-align: left;
 	background-color: #ff5a5a;
 	color: white;
-			position: -webkit-sticky;
-  position: sticky;
-  top:0;
-	
-	
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+
+
 }
+
 
 
 
@@ -115,11 +117,8 @@ select {
 	background-color: #f2f2f2;
 	padding: 0px 10px 10px 10px;
 	max-height: 712.2px;
-	position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-	
-	
+
+
 
 
 
@@ -220,53 +219,62 @@ button:hover {
 
 .sideB {
 	margin-top: 3px;
-	
+
 }
+
+#scrolltable { height: 600px; overflow: auto; }
 
 @media only screen and (max-width:1213px) {
 	.grid {
-	grid-template-columns: 300px 1fr;}
-		
+		grid-template-columns: 300px 1fr;
+	}
+
 	button {
 		padding: 9px 15px;
 		font-size: 12px;
-	margin: 4px 2px;
+		margin: 4px 2px;
 	}
-	
+
 	#table td,
-#table th {
-	border: 1px solid #ddd;
-	padding: 4px;
-}
-#table th {
-	padding-top: 9px;
-	padding-bottom: 9px;}
-	
-	
+	#table th {
+		border: 1px solid #ddd;
+		padding: 4px;
+	}
+
+	#table th {
+		padding-top: 9px;
+		padding-bottom: 9px;
+	}
+
+
 	.sideA input[type=text],
-select {
-	width: 100%;
-	padding:9px 17px;
-	margin: 8px 0;
+	select {
+		width: 100%;
+		padding: 9px 17px;
+		margin: 8px 0;
 
-}
+	}
 
-.sideA input[type=date],
-select {
-	width: 100%;
-	padding: 12px 20px;
-	margin: 8px 0;
+	.sideA input[type=date],
+	select {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
 
-}
+	}
 
-.sideA input[type=submit] {
-	width: 100%;
-	background-color: #4CAF50;
-	color: white;
-	padding: 14px 20px;
-	margin: 8px 0;
+	.sideA input[type=submit] {
+		width: 100%;
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
 
-}
-	
+	}
+
+	.sideA {
+		
+		max-height: 690px;
+	}
 
 }
