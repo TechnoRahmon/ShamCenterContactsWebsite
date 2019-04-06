@@ -15,5 +15,5 @@
     $sql = "UPDATE shamcenter SET FirstName='$FirstName', LastName='$LastName', PersNum='$PersNum', Adress='$Adress', PostNum='$PostNum', MobNum='$MobNum', Email='$Email', Date='$Date', Money='$Money' WHERE ContactID='$ID';";
     $result = mysqli_query($conn, $sql);
 
-    header("location: ..\index.php");
+    header("location: ..\Main.php");
 ?>
