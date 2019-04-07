@@ -32,6 +32,7 @@ box-shadow: 3px 12px 29px 3px rgba(125,123,125,1);
   border: 1px solid #ccc;
   box-sizing: border-box;
 border-radius: 10px;
+		  outline: none;
 }	
 		
 		#passwordBox {
