@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+  <head>
+    <title>table</title>
+    <meta charset="windows-1252">
+     <meta name="viewport" content="width=device-width, intial-scale=1.0">
+     <style>
+         .containe{
+             overflow: hidden
+         }
+         .tab{
+             float: left;
+         }
+         .tab-2{
+             margin-left: 50px;
+         }
+         .tab-2 input{
+             display: block;
+             margin-bottom: 10px;
+         }
+         tr
+         {
+             transition:all .25s ease-in-out
+         }
+         tr:hover 
+         {
+             background-color:  #EEE;
+             cursor: pointer;
+         }
+      </style>
+      
+  </head>
+   <body>
+    
+    <div class="container">
+        <div class="tab tab-1">
+            <table id="table" border="1">
+                <tr>
+                    <th>Förnamn</th>
+                    <th>Efternamn</th>
+                    <th>Ålder</th>
+                </tr>
+                <tr>
+                    <td>A1</td>
+                    <td>B1</td>
+                    <td>C1</td>
+                </tr>
+                <tr>
+                    <td>D1</td>
+                    <td>E1</td>
+                    <td>F1</td>
+                </tr>
+                <tr>
+                    <td>G1</td>
+                    <td>H1</td>
+                    <td>1</td>
+                </tr>
+                
+            </table>
+        </div>
+        <div class="tab tab-2">
+            Förnamn :<input type="text" name="fname" id="fname">
+            Efternamn :<input type="text" name="lname" id="lname">
+            Ålder :<input type="text" name="age" id="age">
+            
+            <button onclick="addHtmlTableRow();">Add</button>
+            <button>Edit</button>
+            <button>Remove</button>
+        </div>
+    </div>
+    <script>
+       //adda row
+        var rIndex,
+            table = document.getElementById("table");
+        function addHtmlTableRow()
+        {
+            
+            // get the table by id 
+            // ret a new row and cells 
+           // get value from input text 
+            // set the values into row cell's
+            var newRow = table.insertRow(table.length),
+            cell1= newRow.insertCell(0),
+            cell2= newRow.insertCell(1),
+            cell3= newRow.insertCell(2),
+            fname = document.getElementById("fname") .value,
+            lname = document.getElementById("lname") .value,
+            age = document.getElementById("age") .value;
+              
+            cell1.innerHTML = fname;
+            cell2.innerHTML = lname;
+            cell3.innerHTML = age;
+            
+            //call the function to set the event to the new row
+            selectedRowToInput();
+        }
+        // display selected row data into input text
+        function selectedRowToInput() 
+        {
+            
+            for(var i = 1 ; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick= function() 
+                    {
+                     // get the seected row index
+                        rIndex = this.rowIndex;
+                        document.getElementById("fname").value = this.cells[0].innerHTML;
+                        document.getElementById("lname").value = this.cells[1].innerHTML;
+                        document.getElementById("age").value = this.cells[2].innerHTML;
+                    };
+                }
+        }
+        selectedRowToInput();
+        
+        function editHtmlTbleSelectdRow()
+        {
+            var fname = document.getElementById("fname").value,
+                lname = document.getElementById("lname").value,
+                age = document.getElementById("age").value;
+            
+            table.rows[rIndex].cells[0].innerHTML = fname;
+            table.rows[rIndex].cells[1].innerHTML = lname;
+            table.rows[rIndex].cells[2].innerHTML = age;
+        }
+       </script>
+</body>
