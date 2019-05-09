@@ -1,15 +1,26 @@
+* {
+    
+    margin: 0px;
+}
+html {
+  background-color: gray
+}
 table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+    box-shadow:  5px 20px 23px #676565;
+    
 }
 
 table td, table th {
   border: 1px solid #ddd;
   padding: 8px;
+
 }
 
 table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(odd){background-color: #ffffff;}
 
 table tr:hover {background-color: #ddd;}
 
@@ -76,10 +87,13 @@ input[type=submit]:hover {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+    box-shadow:  5px 20px 23px #676565;
 }
 
 .tab-1 {
     grid-area: tab1;
+    margin-right: 20px;
+    border-radius: 5px;
 }
 
 
@@ -88,3 +102,65 @@ input[type=submit]:hover {
     grid-template-columns: 1fr 400px 400px 1fr ;
     grid-template-areas: ". tab1 tab2 ."
 }
+button {
+  display: inline-block;
+  padding: 15px 25px;
+
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+button:hover {background-color: #3e8e41}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+#container {
+  background-color: #959595;
+    width: 100%;
+    height: 130px;
+    margin-bottom: 20px
+}
+
+#container img {
+   max-height:100%;
+    max-width:100%; 
+    display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns:20px 1fr 1fr 20px;
+    grid-template-areas: ". tab1  tab1 ."
+        ". tab2 tab2 ." ;
+}  
+    
+    .tab-2 {
+   margin-top: 20px;
+}
+    .tab-1 {
+    
+    margin-right: 0px
+}
+    
+    #container {
+    height: 100px;   
+}
+
+
+}
+

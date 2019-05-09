@@ -1,37 +1,18 @@
 <!DOCTYPE html>
+ <html lang="sv">
   <head>
     <title>table</title>
     <meta charset="windows-1252">
-     <meta name="viewport" content="width=device-width, intial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" type="text/css" href="table.css">
-     <style>
-         .containe{
-             overflow: hidden
-         }
-         .tab{
-             float: left;
-         }
-         .tab-2{
-             margin-left: 50px;
-         }
-         .tab-2 input{
-             display: block;
-             margin-bottom: 10px;
-         }
-         tr
-         {
-             transition:all .25s ease-in-out
-         }
-         tr:hover 
-         {
-             background-color:  #EEE;
-             cursor: pointer;
-         }
-      </style>
+
       
   </head>
    <body>
-    
+    <header>
+       <div id="container"><img src="https://cdn.filestackcontent.com/ukFsPddSFqI8w6MmMfvw"></div>
+        
+    </header>
     <div class="container">
        
         <div class="tab tab-1">
@@ -44,17 +25,17 @@
                 <tr>
                     <td>A1</td>
                     <td>B1</td>
-                    <td>C1</td>
+                    <td>20</td>
                 </tr>
                 <tr>
                     <td>D1</td>
                     <td>E1</td>
-                    <td>F1</td>
+                    <td>30</td>
                 </tr>
                 <tr>
                     <td>G1</td>
                     <td>H1</td>
-                    <td>1</td>
+                    <td>40</td>
                 </tr>
                 
             </table>
@@ -165,5 +146,8 @@
             document.getElementById("lname").value = "",
             document.getElementById("age").value = "";
         }
+        
+
        </script>
 </body>
+</html>
