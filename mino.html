@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>music</title>
+    <meta charset="windows-1252">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+         *{
+             padding: 0px;
+             margin: 0;
+         }
+    #container {
+  background-color: #959595;
+    width: 100%;
+    height: 130px;
+    margin-bottom: 20px
+}
+
+#container img {
+   max-height:100%;
+    max-width:100%; 
+    display: block;
+margin-left: auto;
+margin-right: auto;
+}
+        .slidShow {
+            width: 100%;
+             
+            background: black;
+            height: 500px;
+         }
+         .slidShow img {
+    
+    max-width:100%; 
+    display: block;
+margin-left: auto;
+margin-right: auto; 
+             height: 100%;
+         }
+         
+         #information {
+             display: grid;
+    grid-template-columns:1fr 200PX 200PX 200PX 1fr;
+    grid-template-areas: ". p1 p2 p3 ." ;
+            
+         }
+         
+         #p1 {
+             grid-area: p1;
+         } #p2 {
+             grid-area: p2;
+         } #p3 {
+             grid-area: p3;
+         }
+         
+         #allinfo {
+             width: 100%;
+             background-color: aquamarine;
+             
+         }
+
+    </style>
+</head>
+<body>
+    <div id="container"><img src="https://cdn.filestackcontent.com/ukFsPddSFqI8w6MmMfvw"></div>
+
+    
+<!--
+<div class="slidShow">
+  <img class="mySlides" src="https://www.dublinvisitorcentre.ie/wp-content/uploads/2019/02/eastbound-festival.jpg" style="width:100%">
+  <img class="mySlides" src="https://d49r1np2lhhxv.cloudfront.net/www/admin/uploads/images/ImagineEDMPic.jpg" style="width:100%">
+  <img class="mySlides" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Liz_Murray_Photography_-_Isle_of_Wight_Festival_2014_-_Big_Wheel_View_09_main_stage.jpg/1200px-Liz_Murray_Photography_-_Isle_of_Wight_Festival_2014_-_Big_Wheel_View_09_main_stage.jpg" style="width:100%">
+</div>
+-->
+<div id="allinfo">
+<div id="information">
+    <div id="p1">
+        omar
+    </div>
+    <div id="p2">ahmad</div>
+    <div id="p3">samer</div>
+</div>
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+</body>
+</html>
